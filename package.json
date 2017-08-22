@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/GanadiniAkshay/ApiAiRecognizer#readme",
   "dependencies": {
-    "apiai": "^4.0.1",
+    "apiai": "https://github.com/wangshijun/apiai-nodejs-client",
     "uuid": "^3.0.1"
   }
 }

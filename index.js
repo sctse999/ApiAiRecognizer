@@ -3,9 +3,12 @@ var apiai = require('apiai');
 const uuid = require('uuid');
 
 var ApiAiRecognizer = function(token){
-    this.app = apiai(token);
+    // this.app = apiai(token);
+    
+    this.app = apiai(token, {
+        proxy: process.env.http_proxy,    // comment this out if proxy is not needed
+    });
 };
-
 
 ApiAiRecognizer.prototype.recognize = function (context, done){
             var intent = { score: 0.0 };
@@ -81,7 +84,7 @@ ApiAiRecognizer.prototype.recognize = function (context, done){
                                 entities_found.push(entity_found);
                             }
                         }
-                        intent = { score: result.score, intent: result.metadata.intentName, entities: entities_found };
+                        intent = { score: result.score, intent: result.metadata.intentName, entities: entities_found, messages: result.fulfillment.messages };
                     }
                     done(null, intent);
                 });
